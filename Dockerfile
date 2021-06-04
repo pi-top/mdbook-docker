@@ -3,7 +3,13 @@ ARG MDBOOK_VERSION="0.4.9"
 
 RUN cargo install mdbook --vers ${MDBOOK_VERSION}
 
-RUN cargo install mdbook-graphviz
+# Install mdbook-graphviz from source
+WORKDIR /deps
+RUN git clone https://github.com/dylanowen/mdbook-graphviz/
+
+WORKDIR /deps/mdbook-graphviz/
+
+RUN cargo build && cargo install --force --path .
 
 # Install homebrew dependencies
 RUN apt-get update \
