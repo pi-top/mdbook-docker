@@ -9,8 +9,11 @@ RUN apt-get update \
 # Install homebrew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+# Install gcc via homebrew as recommended
+RUN /home/linuxbrew/.linuxbrew/bin/brew install --verbose gcc
+
 # Install graphviz via homebrew
-RUN /home/linuxbrew/.linuxbrew/bin/brew install graphviz
+RUN /home/linuxbrew/.linuxbrew/bin/brew install --verbose graphviz
 
 RUN cargo install mdbook --vers ${MDBOOK_VERSION}
 
